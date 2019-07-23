@@ -1,0 +1,9 @@
+<div class="text-center" *ngIf="hasMore; else messageTemplate">
+  <button class="btn btn-primary"> Quero Mais! </button>
+</div>
+
+<ng-template #messageTemplate>
+  <p class="text-center text-muted"> Desculpe :'(
+  <br/> Tem só essas mesmo! 
+  </p>
+</ng-template>
