@@ -1,0 +1,109 @@
+<h4 class="text-center"> Envie seus dados, se cadastre e comece seu mundo novo</h4>
+
+<form [formGroup]="signupForm" class="form mt-4" (submit)="signup()">
+    <div class="form-group">
+        <input  formControlName="email" placeholder="e-mail" class="form-control" autofocus >
+                
+        <ap-vmessage 
+            *ngIf="signupForm.get('email').errors?.required"
+            text='Digite seu e-mail aí pra gente encher de spam. Brincadeira kkk, mas é obrigatório para o cadastro.'>
+        </ap-vmessage> 
+
+                        
+        <ap-vmessage 
+            *ngIf="signupForm.get('email').errors?.email"
+            text='Esse email não existe em!'>
+        </ap-vmessage> 
+
+        <small *ngIf="signupForm.get('email').valid" class="text-success"> Muito bem, email validado! </small>
+
+    </div>
+
+    <div class="form-group">
+        <input formControlName="fullName" placeholder="Nome completo" class="form-control">
+                        
+        <ap-vmessage 
+            *ngIf="signupForm.get('fullName').errors?.required"
+            text='Como você quer cadastrar sem dizer ao menos seu nome completo?'>
+        </ap-vmessage> 
+
+                        
+        <ap-vmessage 
+            *ngIf="signupForm.get('fullName').errors?.minlength"
+            text='Ninguém tem um nome completo com menos de duas letras!'>
+        </ap-vmessage>  
+
+        <ap-vmessage 
+            *ngIf="signupForm.get('fullName').errors?.maxlength"
+            text='Ta achando que você é o "Pedro de Alcântara Francisco Antônio 
+            João Carlos Xavier de Paula Miguel Joaquim José Gonzaga Pascoal
+            Cipriano Serafim de Bragança e Bourbon"?
+            Mais conhecido como "Dom Pedro 1º".
+            Favor insira menos que 40 letras!'>
+        </ap-vmessage>
+
+        <small *ngIf="signupForm.get('fullName').valid" class="text-success"> Que nome legal, muito bem vindo(a) </small>
+        
+    </div>
+
+    <div class="form-group">
+        <input formControlName="userName" placeholder="Nome de usuário" class="form-control">
+              
+        <ap-vmessage 
+            *ngIf="signupForm.get('userName').errors?.required"
+            text='Digite seu apelido ou seu nick, sei lá!'>
+        </ap-vmessage> 
+
+        <ap-vmessage 
+            *ngIf="signupForm.get('userName').errors?.minlength"
+            text='Ninguém tem um nome com menos de duas letras!'>
+        </ap-vmessage>  
+
+        <ap-vmessage 
+            *ngIf="signupForm.get('userName').errors?.maxlength"
+            text='Ta achando que você é o "Pedro de Alcântara Francisco Antônio 
+            João Carlos Xavier de Paula Miguel Joaquim José Gonzaga Pascoal
+            Cipriano Serafim de Bragança e Bourbon"?
+            Mais conhecido como "Dom Pedro 1º".
+            Favor insira menos que 30 letras!'>
+        </ap-vmessage>
+
+        <ap-vmessage 
+            *ngIf="signupForm.get('userName').errors?.lowerCase"
+            text='Tá gritando por acaso? O nome de usuário deve ser em minúsculo!'>
+        </ap-vmessage>
+
+        <ap-vmessage
+            text="Poxa esse apelido já existe, seja criativo!"
+            *ngIf="signupForm.get('userName').errors?.userNameTaken">
+        </ap-vmessage>
+        
+        <small *ngIf="signupForm.get('userName').valid" class="text-success"> Gostei, pode ser esse apelido mesmo! </small>
+                
+    </div>
+
+    <div class="form-group">
+        <input formControlName="password" type="password" placeholder="senha" class="form-control">
+                      
+        <ap-vmessage 
+            *ngIf="signupForm.get('password').errors?.required"
+            text='Não da pra cadastrar sem uma senha né dãã!'>
+        </ap-vmessage> 
+
+        <ap-vmessage 
+            *ngIf="signupForm.get('password').errors?.minlength"
+            text='Crie uma senha melhor! Com no minímo de 8 caracteres.'>
+        </ap-vmessage>  
+
+        <ap-vmessage 
+            *ngIf="signupForm.get('password').errors?.maxlength"
+            text='Não precisa exagerar na senha né! Máximo de 18 caracteres.'>
+        </ap-vmessage>
+
+    </div>
+
+    <button [disabled]="signupForm.invalid || signupForm.pending" class="btn btn-primary btn-block">Vamos lá!</button>
+
+    <p>Já está cadastrado? <br/> É só <a [routerLink]="['']">entrar!</a></p>
+
+</form>

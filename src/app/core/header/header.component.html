@@ -3,13 +3,14 @@
         <a class="navbar-brand"> Suas, minhas, nossas fotos </a>
         
         <div *ngIf="(user$ | async) as user; else login">
-            <i class="fa fa-user-circle"></i>
-            <a class="ml-2">{{ user.name }}</a>
+            <i class="fa fa-user-circle mr-1"></i>
+            <a class="mr-1">{{ user.name }}</a>
+            <a (click)="logout()">(Logout)</a>
         </div>
 
         <ng-template #login>
             <span class="navbar-text">
-                Eii!! Você precisa logar!
+                <a [routerLink]="['']" > Eii!! Você precisa logar! </a>
             </span>
         </ng-template>
 
